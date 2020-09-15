@@ -3,14 +3,12 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 
+const booksRoutes = require('./routes/books');
+
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/test', (req, res) => {
-    res.json({
-        "message": "it works!"
-    });
-});
+app.use('/api', booksRoutes);
 
-module.exports = app
+module.exports = app;
