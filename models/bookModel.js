@@ -7,15 +7,17 @@ const Book = db.define('Book', {
     autoIncrement: true,
     primaryKey: true
   },
-  'book_name': {
+  'title': {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: false
   },
   'author': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   'teacher': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
 });
 
