@@ -19,6 +19,10 @@ const Book = db.define('Book', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  'subject': {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 });
 
 Book.sync();
