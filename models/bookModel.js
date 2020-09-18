@@ -8,23 +8,26 @@ const Book = db.define('Book', {
     primaryKey: true
   },
   'title': {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   'author': {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   'teacher': {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   'subject': {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
+  },
+  'filename': {
+    type: DataTypes.STRING
   }
-});
+},
+  {
+    timestamps: false
+  }
+);
 
-Book.sync();
+Book.sync({});
 
 module.exports = Book;

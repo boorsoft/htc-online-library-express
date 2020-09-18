@@ -27,6 +27,8 @@ router.get('/books', (req, res) => {
             booksFiltered.push(books[book]);
           }
         }
+      } else {
+        return books;
       }
       
       return booksFiltered;
