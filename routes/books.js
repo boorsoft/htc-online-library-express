@@ -82,4 +82,10 @@ router.put('/books/:id', (req, res) => {
   res.status(200).json({"message": "Book modified!"});
 });
 
+router.delete('/books/:id', (req, res) => {
+  Book.destroy({where: {book_id: req.params.id}})
+  
+  res.status(200).json({"message": "Book deleted!"})
+})
+
 module.exports = router;
