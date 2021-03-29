@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const checkAuth = require('../middleware/checkAuth')
 
 const Book = require('../models/bookModel');
 
@@ -59,33 +60,48 @@ router.get('/books/:id', (req, res) => {
   
 })
 
-router.post('/books', (req, res) => {
-  const book = Book.create({
-    title: req.body.title,
-    author: req.body.author,
-    teacher: req.body.teacher,
-    sujbject: req.body.subject,
-    filename: req.body.filename
-  });
-  res.status(200).json({"message": "Book created!"});
+router.post('/books', checkAuth, (req, res) => {
+    // Проверка на наличие элементов
+    if (req.body.title &&
+        req.body.author &&
+        req.body.teacher &&
+        req.body.subject &&
+        req.body.filename
+    ) {
+      const book = Book.create({
+        title: req.body.title,
+        author: req.body.author,
+        teacher: req.body.teacher,
+        subject: req.body.subject,
+        filename: req.body.filename
+      })
+        .then(() => {
+          res.status(200).json({"message": "Book created!"});
+        })
+        .catch(err => res.status(401).json({"message": "Error while creating!"}))
+    } else {
+      res.status(401).json({"message": "Data is not filled correctly"})
+    }
+    
 });
 
-router.put('/books/:id', (req, res) => {
+router.put('/books/:id', checkAuth, (req, res) => {
   const book = Book.update({
     title: req.body.title,
     author: req.body.author,
     teacher: req.body.teacher,
     sujbject: req.body.subject,
     filename: req.body.filename
-  }, {where: {book_id: req.params.id}});
+  }, {where: {book_id: req.params.id}}).then(() => {
+    res.status(200).json({"message": "Book modified!"});
+  }).catch((err) => res.status(401).json({"message": "Error while updating!"}))
 
-  res.status(200).json({"message": "Book modified!"});
+  
 });
 
-router.delete('/books/:id', (req, res) => {
-  Book.destroy({where: {book_id: req.params.id}})
+router.delete('/books/:id', checkAuth, (req, res) => {
+  Book.destroy({where: {book_id: req.params.id}}).then(() => res.status(200).json({"message": "Book deleted!"})).catch((err) => res.status(401).json({"message": "Error while deleting"}))
   
-  res.status(200).json({"message": "Book deleted!"})
 })
 
 module.exports = router;

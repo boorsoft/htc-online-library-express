@@ -8,19 +8,24 @@ const Book = db.define('Book', {
     primaryKey: true
   },
   'title': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   'author': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   'teacher': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   'subject': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   'filename': {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   }
 },
   {
