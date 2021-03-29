@@ -13,7 +13,9 @@ const Book = require('./models/bookModel');
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({
+  origin: 'https://htc-online-library-react.boorsoft.repl.co'
+}));
 
 app.use('/api', booksRoutes);
 app.use('/user', usersRoutes);
