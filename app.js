@@ -3,7 +3,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
-const path = require('path');
 
 const booksRoutes = require('./routes/books');
 const usersRoutes = require('./routes/users');

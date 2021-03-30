@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv')
-
-dotenv.config({path: __dirname + '/.env'})
 
 const User = require('../models/userModel')
 
@@ -36,7 +33,7 @@ router.post('/login', (req, res) => {
             isAdmin: user.isAdmin
           }, process.env['JWT_KEY'],
           {
-            expiresIn: "1h"
+            expiresIn: "20d"
           }
           )
 
