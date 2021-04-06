@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({
-  origin: 'https://htc-online-library-react.boorsoft.repl.co'
+  origin: 'https://htc-lib.boorsoft.repl.co'
 }));
 
 app.use('/api', booksRoutes);
